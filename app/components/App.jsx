@@ -1,8 +1,17 @@
+import Cart from './Cart';
+import Catalog from './Catalog';
 import React from 'react';
+import ShopHeader from './ShopHeader';
 
 const App = React.createClass({
   render() {
-    return <h1>Hello world</h1>;
+    return (
+      <div>
+        <ShopHeader />
+        <Catalog />
+        <Cart />
+      </div>
+    )
   }
 });
 
