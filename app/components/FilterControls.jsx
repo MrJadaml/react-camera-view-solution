@@ -8,7 +8,7 @@ const FilterControls = React.createClass({
           <input type="text" placeholder="Search here" />
         </div>
         <div className="input-field col s4">
-          <select>
+          <select onChange={this.handleSort}>
             <option>Name</option>
             <option>Rating</option>
           </select>

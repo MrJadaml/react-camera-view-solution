@@ -1,5 +1,5 @@
 ## Part 1
-#### Create componenet hierarchy diagram + Use JSX to build out user interface
+#### Use React JSX to build a user interface.
 
 Your first step should be to diagram out the component hierarchy of the
 app using the gifs below as a reference. Don't worry about the sorting or add-to-cart functionallity
@@ -26,7 +26,7 @@ components so that each one will be different.
 
 
 ## Part 2
-#### Style with Materalize
+#### Use synthetic events to build an interactive React user interface.
 
 Use Materalize to style the app. You will want to have the CSS, JS files and jQuery via CDN as well as the google fonts Material Icons.
 Feel free to reference your Angular Camera shop to quickly match up the styling.
@@ -35,14 +35,58 @@ Mirror the classes for the Select form control from your Angular app for now.
 Later on we will talk about what it will take to get it to show up on the page.
 
 ## Part 3
+#### State + Props
 
-- Use synthetic events to build an interactive React user interface.
-- Use props and state to separate the concerns of a React user
-  interface.
+At this point your camera shop app should have the compenent structrure all laid out and styled up with Materialize.
+Your next step will be to provide your application with some state (data).
+Use the following camera data to set the initial state of your app.
+
+```javascript
+[
+  {
+    id: 1,
+    title: 'Nikon D3100 DSLR',
+    image: 'http://ecx.images-amazon.com/images/I/713u2gDQqML._SX522_.jpg',
+    rating: 4,
+    price: 369.99,
+    onSale: true
+  }, {
+    id: 2,
+    title: 'Canon EOS 70D',
+    image: 'http://ecx.images-amazon.com/images/I/81U00AkAUWL._SX522_.jpg',
+    rating: 2,
+    price: 1099.0,
+    onSale: false
+  }, {
+    id: 3,
+    title: 'Nikon D810A',
+    image: 'http://ecx.images-amazon.com/images/I/91wtXIfLl2L._SX522_.jpg',
+    rating: 3,
+    price: 3796.95,
+    onSale: true
+  }
+]
+```
+
+Once you have set the initial state of the app, utilize props to have relavant data flow down to the components that need it.
+Once your components have the data they need you will be able to use `{this.props.YOUR_DATA}` to populate the elements with the camera data.
+
+
+#### Synthetic Event Handlers
+With our initial data in place you can start working on event handlers, of the syntethic kind.
+Think about the events you will want to handle on the page.
+You will need to handle a click event with the "ADD TO CART" button, as well as one for the trash icon in the cart that will remove a camera option from cart.
+You will also want to handle a change event for when a user types into the search input.
+This event should update the list of cameras filtering out any that don't have a field that matches the input text.
+
+The event handler in which you update the state, with `this.setState({ STATE_TO_BE_UPDATED })`, will be defined in the same component where the `getInitialState` method for the state to be updated is defined.
+
+Remember, you can give subcomponents access to methods defined in parent components through props, much in the same was as you would with state.
+
 
 ## Part 4
+#### Manipulate components throughout the component life cycle
 
-- Manipulate components throughout the component life cycle
 
 ## Part 5
 
@@ -65,35 +109,6 @@ View app you recently built.
 
 ## Example Data
 
-Here is the data that will be used.
-
-```javascript
-[
-  {
-    title: 'Nikon D3100 DSLR',
-    image:
-'http://ecx.images-amazon.com/images/I/713u2gDQqML._SX522_.jpg',
-    rating: 4,
-    price: 369.99,
-    onSale: true
-  },
-  {
-    title: 'Canon EOS 70D',
-    image:
-'http://ecx.images-amazon.com/images/I/81U00AkAUWL._SX522_.jpg',
-    rating: 2,
-    price: 1099.0,
-    onSale: false
-  },
-  {
-    title: 'Nikon D810A',
-    image:'http://ecx.images-amazon.com/images/I/91wtXIfLl2L._SX522_.jpg',
-    rating: 3,
-    price: 3796.95,
-    onSale: true
-  }
-]
-```
 
 ## Part 1 - Requirements
 
