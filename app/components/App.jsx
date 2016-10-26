@@ -6,10 +6,12 @@ import ShopHeader from './ShopHeader';
 const App = React.createClass({
   render() {
     return (
-      <div>
+      <div className="container">
         <ShopHeader />
-        <Catalog />
-        <Cart />
+        <div className="row">
+          <Catalog />
+          <Cart />
+        </div>
       </div>
     )
   }

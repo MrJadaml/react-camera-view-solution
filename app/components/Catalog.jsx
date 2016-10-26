@@ -5,7 +5,7 @@ import React from 'react';
 const Catalog = React.createClass({
   render() {
     return (
-      <div>
+      <div className="col s12 m8">
         <FilterControls />
         <Cameras />
       </div>

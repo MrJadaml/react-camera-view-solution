@@ -1,6 +1,5 @@
 ## Part 1
-
-- Use React JSX to build a user interface.
+#### Create componenet hierarchy diagram + Use JSX to build out user interface
 
 Your first step should be to diagram out the component hierarchy of the
 app using the gifs below as a reference. Don't worry about the sorting or add-to-cart functionallity
@@ -27,20 +26,30 @@ components so that each one will be different.
 
 
 ## Part 2
+#### Style with Materalize
+
+Use Materalize to style the app. You will want to have the CSS, JS files and jQuery via CDN as well as the google fonts Material Icons.
+Feel free to reference your Angular Camera shop to quickly match up the styling.
+Everything should work just the same with the exception of the Select form control.
+Mirror the classes for the Select form control from your Angular app for now.
+Later on we will talk about what it will take to get it to show up on the page.
+
+## Part 3
 
 - Use synthetic events to build an interactive React user interface.
-
-Day 3
 - Use props and state to separate the concerns of a React user
   interface.
 
-Day 4
+## Part 4
+
 - Manipulate components throughout the component life cycle
 
-Day 5
+## Part 5
+
 - Use Material UI to build a React user interface.
 
-Day 6
+## Part 6
+
 - Use React Router to build a React user interface.
 
 <hr>
