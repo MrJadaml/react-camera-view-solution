@@ -9,7 +9,10 @@ const Cart = React.createClass({
           <div className="card-content white-text">
             <span className="card-title">Your Cart</span>
             <ul className="collection black-text">
-              <CartItems cart={this.props.cart} />
+              <CartItems
+                cart={this.props.cart}
+                handleRemoveAllFromCart={this.props.handleRemoveAllFromCart}
+              />
             </ul>
             <div className="row">
               <div className="col s6">

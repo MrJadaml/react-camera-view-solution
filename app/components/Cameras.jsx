@@ -3,8 +3,12 @@ import React from 'react';
 
 const Cameras = React.createClass({
   render() {
-    const cameraList = this.props.cameras.map((camera) => {
-      return <Camera camera={camera} />
+    const cameraList = this.props.cameras.map((camera, index) => {
+      return <Camera
+        camera={camera}
+        key={index}
+        handleAddToCart={this.props.handleAddToCart}
+      />
     });
 
     return (
