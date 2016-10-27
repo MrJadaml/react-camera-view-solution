@@ -3,9 +3,8 @@ import React from 'react';
 
 const CartItems = React.createClass({
   render() {
-    const TEMPARRAY = [1,2];
-    const cartItems = TEMPARRAY.map((item) => {
-      return <CartItem />
+    const cartItems = this.props.cart.map((item) => {
+      return <CartItem camera={item}/>
     });
 
     return (
