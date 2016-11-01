@@ -6,7 +6,8 @@ const Catalog = React.createClass({
   getInitialState() {
     return {
       ratingFilter: null,
-      searchFilter: this.props.cameras
+      searchFilter: this.props.cameras,
+      sortType: 'name'
     }
   },
 
@@ -28,12 +29,33 @@ const Catalog = React.createClass({
     this.setState({ searchFilter });
   },
 
+  handleSort(sortType) {
+    let searchFilter = this.state.searchFilter.sort((a, b) => {
+      if (a[sortType] < b[sortType]) {
+        return 1;
+      } else if ( a[sortType] > b[sortType]) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+
+    if (sortType === 'title') {
+      searchFilter = searchFilter.reverse();
+
+      this.setState({ searchFilter });
+    } else {
+      this.setState({ searchFilter });
+    }
+  },
+
   render() {
     return (
       <div className="col s12 m8">
         <FilterControls
           handleSearch={this.handleSearch}
           handleSort={this.handleSort}
+          sortType={this.sortType}
         />
         <Cameras
           cameras={this.state.searchFilter}

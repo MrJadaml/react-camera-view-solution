@@ -87,6 +87,33 @@ Remember, you can give subcomponents access to methods defined in parent compone
 ## Part 4
 #### Manipulate components throughout the component life cycle
 
+When a camera is added to the cart the state is updated.
+Any component that makes use of that changed state is updated and will go through a series of component lifecycle events.
+One of those lifecycle events relates to recieving new props.
+So when you add a camera to the cart, the cart's subtotal, tax and total should also update.
+Tap into the approprite lifecycle event so that those values get updated whenever a new camera is added or removed from the cart.
+
+Our select field has not been showing up and now is the time to fix that.
+Materalize fires off an initilization method on that select element after the page loads.
+Like with jQuery where you would want to wait for the page to load,
+similarly with React you may want to wait for a component to mount before you can apply logic.
+
+Once you have the select field displaying on the page it's time to get it sorting the camera catalog.
+The first thing to do is to apply an on change attribute to the select element with an event handler defined in your component.
+Toss a console.log() in your event handler and get it to spit out the selected value.
+Once you see the selected value getting logged you are ready to start applying the business logic.
+
+NOTE: Materialize does a fair amount of DOM manipulation which can create issues for React.
+We are using it in this portion of the assignment to quickly style our app while also building out the componenets ourselves.
+In the near future we'll be using a library that will replace Materialize.
+This library, and other similar styling libriaries, will be the perfred method for those who want to use styling frameworks.
+
+HINT: Materialize works in a way that blocks the default behavior.
+There are ways to get around that, a couple of which are discussed here:
+https://github.com/Dogfalo/materialize/issues/1160
+
+BONUS: Add a filter that converts the numeric rating into stars.
+
 
 ## Part 5
 

@@ -1,6 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 const FilterControls = React.createClass({
+  componentDidMount() {
+    $('select').material_select();
+    $(ReactDOM.findDOMNode(this.refs.mySelectBox)).on('change', this.handleSort);
+  },
+
   handleSearch(event) {
     const searchText = event.target.value;
 
@@ -8,7 +14,7 @@ const FilterControls = React.createClass({
   },
 
   handleSort(event) {
-    console.log('Temporarily Out of Order');
+    this.props.handleSort(event.target.value);
   },
 
   render() {
@@ -23,9 +29,9 @@ const FilterControls = React.createClass({
           />
         </div>
         <div className="input-field col s4">
-          <select onChange={this.handleSort}>
-            <option>Name</option>
-            <option>Rating</option>
+          <select ref="mySelectBox" value={this.props.sortType} onChange={this.handleSort}>
+            <option value="title">Name</option>
+            <option value="rating">Rating</option>
           </select>
         </div>
       </div>
