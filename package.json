@@ -28,7 +28,9 @@
     "eslint": "^3.4.0",
     "eslint-config-ryansobol": "^9.1.1",
     "javascript-brunch": "^2.0.0",
+    "material-ui": "^0.16.1",
     "postcss-brunch": "^2.0.1",
+    "react-tap-event-plugin": "^1.0.0",
     "surge": "^0.18.0",
     "uglify-js-brunch": "^2.0.1"
   }

@@ -119,6 +119,15 @@ BONUS: Add a filter that converts the numeric rating into stars.
 
 - Use Material UI to build a React user interface.
 
+-- build out the nav bar with material UI.
+--- install material ui
+??? - install react-tap-event-plugin ???
+
+
+
+
+
+
 ## Part 6
 
 - Use React Router to build a React user interface.

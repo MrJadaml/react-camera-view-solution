@@ -1,5 +1,7 @@
 import Cart from './Cart';
 import Catalog from './Catalog';
+import Checkout from './Checkout';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
 import ShopHeader from './ShopHeader';
 
@@ -65,19 +67,29 @@ const App = React.createClass({
 
   render() {
     return (
-      <div className="container">
-        <ShopHeader />
-        <div className="row">
-          <Catalog
-            cameras={this.state.cameras}
-            handleAddToCart={this.handleAddToCart}
-          />
-          <Cart
-            cart={this.state.cart}
-            handleRemoveAllFromCart={this.handleRemoveAllFromCart}
-          />
-        </div>
-      </div>
+        <MuiThemeProvider>
+          <div>
+            <div className="container">
+              <ShopHeader />
+              <div className="row">
+                <Catalog
+                  cameras={this.state.cameras}
+                  handleAddToCart={this.handleAddToCart}
+                />
+                <Cart
+                  cart={this.state.cart}
+                  handleRemoveAllFromCart={this.handleRemoveAllFromCart}
+                  checkoutList={true}
+                  checkoutBtn={true}
+                />
+              </div>
+            </div>
+            <Checkout
+              cart={this.state.cart}
+              handleRemoveAllFromCart={this.handleRemoveAllFromCart}
+            />
+          </div>
+        </MuiThemeProvider>
     )
   }
 });

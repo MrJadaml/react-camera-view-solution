@@ -41,10 +41,14 @@ const Cart = React.createClass({
         <div className="card blue-grey">
           <div className="card-content white-text">
             <span className="card-title">Your Cart</span>
-            <CartItems
-              cart={this.props.cart}
-              handleRemoveAllFromCart={this.props.handleRemoveAllFromCart}
-            />
+
+            { this.props.checkoutList &&
+              <CartItems
+                cart={this.props.cart}
+                handleRemoveAllFromCart={this.props.handleRemoveAllFromCart}
+              />
+            }
+
             <div className="row">
               <div className="col s6">
                 Subtotal
@@ -69,9 +73,13 @@ const Cart = React.createClass({
                 ${this.state.total}
               </div>
             </div>
-            <div className="card-action">
-              <a className="waves-effect waves-light btn">CHECKOUT</a>
-            </div>
+
+            { this.props.checkoutBtn &&
+              <div className="card-action">
+                <a className="waves-effect waves-light btn">CHECKOUT</a>
+              </div>
+            }
+
           </div>
         </div>
       </div>
