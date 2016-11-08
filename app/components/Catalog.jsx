@@ -7,7 +7,7 @@ const Catalog = React.createClass({
     return {
       ratingFilter: null,
       searchFilter: this.props.cameras,
-      sortType: 'name'
+      sortType: 'name',
     }
   },
 

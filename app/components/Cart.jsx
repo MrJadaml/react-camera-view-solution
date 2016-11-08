@@ -6,32 +6,31 @@ const Cart = React.createClass({
     return {
       subtotal: 0,
       tax: 0,
-      total: 0
+      total: 0,
     }
   },
 
+  componentWillMount() {
+    this._calculateTotals(this.props);
+  },
+
   componentWillReceiveProps(nextProps) {
-    let subtotal = parseFloat(this.state.subtotal);
+    this._calculateTotals(nextProps);
+  },
+
+  _calculateTotals(props) {
+    let subtotal = 0;
     let tax = 0;
     let taxRate = 0.07;
     let total = 0;
 
-    if (nextProps.cart.length === 0) {
-      return this.setState({
-        subtotal: 0,
-        tax: 0,
-        total: 0
-      });
-    }
-
-    for (let option of nextProps.cart) {
-      subtotal = subtotal + option.price * option.qty;
+    for (let item of props.cart) {
+      subtotal = subtotal + (item.price * item.qty);
     }
 
     tax = (subtotal * taxRate).toFixed(2);
     total = (subtotal + parseFloat(tax)).toFixed(2);
     subtotal = subtotal.toFixed(2);
-
     this.setState({ subtotal, tax, total });
   },
 

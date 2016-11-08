@@ -2,43 +2,70 @@
 #### Use React JSX to build a user interface.
 
 Your first step should be to diagram out the component hierarchy of the
-app using the gifs below as a reference. Don't worry about the sorting or add-to-cart functionallity
-at the moment, just focus on the arangment and nesting of elements on the page.
-At this juncture you should also not be worrying about class names and styling.
+app using the gifs below as a reference. Don't worry about the sorting, add-to-cart functionallity
+or styling at the moment, just focus on the arangment and nesting of elements on the page.
 
 What logical collection of elements should be grouped together to comprise a componenet?
 Of those components which ones should be subcomponents of another component?
 
 Once you have sketched out the component hierarchy start to implement a static version of it in React.
+For example my **App.jsx** component looks something like this:
 
-HINT: For iterable components you can create a temp array with a few
-items in it (doesn't really matter what is in it, could just be `[1,2,3]`).
-It should populate a compoent on the page for each item in the placeholder array.
+```jsx
+import Footer from './layout/Footer';
+import Header from './layout/Header';
+import Main from './Main';
+import React from 'react';
+
+const App = React.createClass({
+  render() {
+    return (
+      <div>
+        <Header />
+        <Main />
+        <Footer />
+      </div>
+    )
+  }
+});
+
+export default App;
+```
+
+#### HINT:
+For coponents that iterate over a collction to generate a list of sub components,
+you can create a temp array with a few items in it (doesn't matter what is in it, could just be `[1,2,3]`).
+That will populate a compoent on the page for each item in the placeholder array.
 
 You will likely see the following **Warning** in the console
 >"Warning: Each child in an array or iterator should have a unique "key" prop."
 
-You can ignore that for now. It is just a warning and should break
-anything.
+You can ignore that *for now*. It is just a warning and should break anything.
 
-In a later lecture we will talk about how to pass data into these
-components so that each one will be different.
+In a later lecture we will talk about how to pass data into these components so that each one will be different.
 
+<hr />
 
 ## Part 2
-#### Use synthetic events to build an interactive React user interface.
+#### Style your app.
 
-Use Materalize to style the app. You will want to have the CSS, JS files and jQuery via CDN as well as the google fonts Material Icons.
-Feel free to reference your Angular Camera shop to quickly match up the styling.
+Use Materalize to style the app.
+You will want to include the CSS, JS files and jQuery via CDN as well as the google fonts Material Icons.
 Everything should work just the same with the exception of the Select form control.
-Mirror the classes for the Select form control from your Angular app for now.
 Later on we will talk about what it will take to get it to show up on the page.
+
+<hr />
 
 ## Part 3
 #### State + Props
 
 At this point your camera shop app should have the compenent structrure all laid out and styled up with Materialize.
 Your next step will be to provide your application with some state (data).
+
+Your catalog of cameras and live cart display should be sibling components and share a parent component.
+It is in this parent component where we will want to set the initial state since both the catalog component (and its children)
+as well as the live cart display component (and its children) will want access to this state.
+
 Use the following camera data to set the initial state of your app.
 
 ```javascript
@@ -68,26 +95,30 @@ Use the following camera data to set the initial state of your app.
 ]
 ```
 
-Once you have set the initial state of the app, utilize props to have relavant data flow down to the components that need it.
-Once your components have the data they need you will be able to use `{this.props.YOUR_DATA}` to populate the elements with the camera data.
+Once you have set the initial state of the app, utilize props to have the relavant data flow down to the components that need it.
+Once those components have that data, you will be able to use `{this.props.YOUR_DATA}` to populate your subcomponents with the camera data.
 
+### Synthetic Event Handlers
 
-#### Synthetic Event Handlers
 With our initial data in place you can start working on event handlers, of the syntethic kind.
-Think about the events you will want to handle on the page.
-You will need to handle a click event with the "ADD TO CART" button, as well as one for the trash icon in the cart that will remove a camera option from cart.
-You will also want to handle a change event for when a user types into the search input.
-This event should update the list of cameras filtering out any that don't have a field that matches the input text.
+Think about the events you will want to handle on the page...
+You will need to handle a click event with the "ADD TO CART" button,
+as well as one for the trash icon in the cart that will remove a camera option from cart.
+You will also want to handle a change event for when users types into the search field.
+This event should update the list of cameras, filtering out any that don't have a property value that matches the input text.
 
-The event handler in which you update the state, with `this.setState({ STATE_TO_BE_UPDATED })`, will be defined in the same component where the `getInitialState` method for the state to be updated is defined.
+Any event handlers in which you update the state, with `this.setState({ STATE_TO_BE_UPDATED })`,
+will be defined in the same component where the `getInitialState` method for the state to be updated is defined.
 
-Remember, you can give subcomponents access to methods defined in parent components through props, much in the same was as you would with state.
+Remember, you can give subcomponents access to methods defined in parent components through props,
+much in the same was as you would with state.
 
+<hr />
 
 ## Part 4
 #### Manipulate components throughout the component life cycle
 
-When a camera is added to the cart the state is updated.
+When a camera is added to the cart, the state is updated.
 Any component that makes use of that changed state is updated and will go through a series of component lifecycle events.
 One of those lifecycle events relates to recieving new props.
 So when you add a camera to the cart, the cart's subtotal, tax and total should also update.
@@ -114,23 +145,46 @@ https://github.com/Dogfalo/materialize/issues/1160
 
 BONUS: Add a filter that converts the numeric rating into stars.
 
+<hr />
 
 ## Part 5
 
-- Use Material UI to build a React user interface.
+- Use React Router v4 to build a React user interface.
 
--- build out the nav bar with material UI.
---- install material ui
-??? - install react-tap-event-plugin ???
+Install React Router v4, double checking your *package.json* that version 4 is the version that was in fact installed.
+Wrap the content of your top level component with the BrowserRouter component.
+Update the anchor tags in your navbar to utilize React Router's `<Link />` component.
+You likely have your camera list, filter elements, and cart all in your `<Main />` component.
+Now that you are setting up routing, consider shifting those components to something like a Home or Homepage component.
+In their place in the `<Main />` component you will want to define your routes with React Router's `<Match />` component.
+When a user visits "/" your new Home component should render.
+When a user visits "/cart" a Cart, or checkout, component should render.
+This is different from your live cart preview component, but instead the page where users will fill in their info when submitting an order.
+Bulid out that component and use it as the Match for "/cart"
 
+You will need to pass props down to the Matched components. Utilize the Match component's `render` prop to render the corisponding components and required props.
 
+For example:
 
+```jsx
+<Match pattern="/what-about-bob" exactly render={
+  () => <Bob
+    { ...this.state }
+    handleBabySteps={this.handleBabySteps}
+  />
+}/>
+```
 
+#### Bonus 1:
 
+Add a `<Miss />` component that renders a NotFound component for when a user visitings a path that does not exsist in your app.
 
-## Part 6
+#### Bonus 2:
 
-- Use React Router to build a React user interface.
+You have a new checkout page, and that very first component looks quite similar to our live cart preview component on the home page.
+The only difference is that it doesn't display the list of items and there is no button.
+
+Find a way to reuse your live cart preview component on the checkout page but so that the list and button don't get rendered.
 
 <hr>
 
@@ -202,3 +256,4 @@ la app/components
 ## Resources
 - [Brunch](http://brunch.io)
 - [React](https://facebook.github.io/react/)
+
