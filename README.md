@@ -54,11 +54,18 @@ In a later lecture we will talk about how to pass data into these components so 
 #### Style your app.
 
 Use Materalize to style the app.
-You will want to include the CSS, JS files and jQuery via CDN as well as the google fonts Material Icons.
+You will want to include the CSS, JS and jQuery via CDN as well as the google fonts Material Icons.
 Everything should work just the same with the exception of the `<select>` form control.
 Later on we will talk about what it will take to get it to show up on the page.
 
 Clear out the boilerplate styles provided by Brunch (they hijack things like the H1 element with their logo).
+
+#### ⚠️ WARNING:
+It is generally considered a bad idea to mix jQuery with React.
+Materialize depends on jQuery to function properly, so using Materialize would typically be a bad deal.
+Rest assured, the scope of this assignment is defined in such a way that we will be avoiding the major pitfalls that come with mixing the two libraries.
+There are options to use in place of plain ol' Materalize that provide the features of a CSS framework that we will discuss later,
+but at this stage would add an extra layer of noise on top of learning the fundamentals of React.
 
 <hr />
 
@@ -102,22 +109,34 @@ Use the following camera data to set the initial state of your app.
 ```
 
 Once you have set the initial state of the app, utilize props to have the relevant data flow down to the components that need it.
+Start by passing the state into the catalog component, and down through all of its subcomponents that need the data.
+This is a great time to start using the React Dev Tools extension.
+You will be able to click through the components in the dev tool and see if props are being passed down properly.
 Once those components have that data, you will be able to use `{this.props.YOUR_DATA}` to populate your subcomponents with the camera data.
 
 ### Synthetic Event Handlers
 
 With our initial data in place you can start working on event handlers, of the synthetic kind.
 Think about the events you will want to handle on the page...
-You will need to handle a click event with the "ADD TO CART" button,
-as well as one for the trash icon in the cart that will remove a camera option from cart.
-You will also want to handle a change event for when users types into the search field.
-This event should update the list of cameras, filtering out any that don't have a property value that matches the input text.
+
+You will need to handle a click event with the "ADD TO CART" button.
+When clicked that button will fire a corisponding handler function on the component.
+That handler function should call initiate a chain of fn calls up the component tree,
+passing along the camera object that is being added to the cart.
+The final function called will be the one defined on the component where you have your state defined.
+That function will be the one that will then add the camera to your cart array.
 
 Any event handlers in which you update the state, with `this.setState({ STATE_TO_BE_UPDATED })`,
 will be defined in the same component where the `getInitialState` method for the state to be updated is defined.
 
 Remember, you can give subcomponents access to methods defined in parent components through props,
 much in the same was as you would with state.
+
+Look at your page... What are all the interaction points for the user?
+What event will those points generate? -- which type of event handler is used on the DOM element? i.e. `onChange`
+Which component will an event originate from? -- which component will you define the event handler on?
+On which component is the state defined that this action changes? -- which component will you define the update handler/fn on?
+How will you connect the event handler to the update handler? -- how will the function calls be passed up the chain of components?
 
 <hr />
 
