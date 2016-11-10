@@ -4,7 +4,7 @@ const Footer = React.createClass({
   render() {
     return (
       <nav>
-        Footer
+        &copy; Snapshop 4 lyfe!
       </nav>
     )
   }

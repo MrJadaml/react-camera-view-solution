@@ -1,46 +1,50 @@
 ## Part 1
 #### Use React JSX to build a user interface.
 
-Your first step should be to diagram out the component hierarchy of the
-app using the gifs below as a reference. Don't worry about the sorting, add-to-cart functionallity
-or styling at the moment, just focus on the arangment and nesting of elements on the page.
+Someone from the design team sent over some mockups of our camera shops home page.
+Your first step should be to diagram out the component hierarchy of the app on a whiteboard or piece of paper.
+Feel free to partner up with someone on this part.
+Talking out with someone on how the component hierarchy will be setup will be a great way to work through this stage of the app.
+If it's easier to write things out while you are trying to solidify things, consider using a simple bulleted list.
+They are a simple tool for quickly mocking out a tree, which is what a component hierarchy is.
+If jumping straight to a whiteboard or piece of paper works best for you and your parter, do that.
 
-What logical collection of elements should be grouped together to comprise a componenet?
+Don't worry about the sorting, add-to-cart functionality or styling at the moment,
+just focus on the arrangement and nesting of components and content on the page.
+Take a look at the `<App />` component provided for you as a starting point for your diagram.
+
+Ask yourself. What logical collection of elements should be grouped together to comprise a component?
 Of those components which ones should be subcomponents of another component?
 
+[Insert Image Here](#);
+
 Once you have sketched out the component hierarchy start to implement a static version of it in React.
-For example my **App.jsx** component looks something like this:
-
-```jsx
-import Footer from './layout/Footer';
-import Header from './layout/Header';
-import Main from './Main';
-import React from 'react';
-
-const App = React.createClass({
-  render() {
-    return (
-      <div>
-        <Header />
-        <Main />
-        <Footer />
-      </div>
-    )
-  }
-});
-
-export default App;
-```
+Have your components render out placeholder text of the name of the component if that helps you visulize the components.
 
 #### HINT:
-For coponents that iterate over a collction to generate a list of sub components,
+For components that iterate over a collection to generate a list of sub components,
 you can create a temp array with a few items in it (doesn't matter what is in it, could just be `[1,2,3]`).
-That will populate a compoent on the page for each item in the placeholder array.
+Doing that will populate a component on the page for each item in the placeholder array.
+Your render method would look something a little like the following:
+
+```jsx
+  render() {
+    const someList = [1,2,3].map((item) => {
+      return <ItemComponent />
+    });
+
+    return (
+      <div>{ someList }</div>
+    )
+  }
+```
+
+We will replace the temp array later on with a collection of cameras that we will be passing down from the parent component.
 
 You will likely see the following **Warning** in the console
 >"Warning: Each child in an array or iterator should have a unique "key" prop."
 
-You can ignore that *for now*. It is just a warning and should break anything.
+You can ignore that *for now*. It is just a warning and should not break anything.
 
 In a later lecture we will talk about how to pass data into these components so that each one will be different.
 
@@ -51,15 +55,17 @@ In a later lecture we will talk about how to pass data into these components so 
 
 Use Materalize to style the app.
 You will want to include the CSS, JS files and jQuery via CDN as well as the google fonts Material Icons.
-Everything should work just the same with the exception of the Select form control.
+Everything should work just the same with the exception of the `<select>` form control.
 Later on we will talk about what it will take to get it to show up on the page.
+
+Clear out the boilerplate styles provided by Brunch (they hijack things like the H1 element with their logo).
 
 <hr />
 
 ## Part 3
 #### State + Props
 
-At this point your camera shop app should have the compenent structrure all laid out and styled up with Materialize.
+At this point your camera shop app should have the component structure all laid out and styled up with Materialize.
 Your next step will be to provide your application with some state (data).
 
 Your catalog of cameras and live cart display should be sibling components and share a parent component.
@@ -95,12 +101,12 @@ Use the following camera data to set the initial state of your app.
 ]
 ```
 
-Once you have set the initial state of the app, utilize props to have the relavant data flow down to the components that need it.
+Once you have set the initial state of the app, utilize props to have the relevant data flow down to the components that need it.
 Once those components have that data, you will be able to use `{this.props.YOUR_DATA}` to populate your subcomponents with the camera data.
 
 ### Synthetic Event Handlers
 
-With our initial data in place you can start working on event handlers, of the syntethic kind.
+With our initial data in place you can start working on event handlers, of the synthetic kind.
 Think about the events you will want to handle on the page...
 You will need to handle a click event with the "ADD TO CART" button,
 as well as one for the trash icon in the cart that will remove a camera option from cart.
@@ -120,12 +126,12 @@ much in the same was as you would with state.
 
 When a camera is added to the cart, the state is updated.
 Any component that makes use of that changed state is updated and will go through a series of component lifecycle events.
-One of those lifecycle events relates to recieving new props.
+One of those lifecycle events relates to receiving new props.
 So when you add a camera to the cart, the cart's subtotal, tax and total should also update.
-Tap into the approprite lifecycle event so that those values get updated whenever a new camera is added or removed from the cart.
+Tap into the appropriate lifecycle event so that those values get updated whenever a new camera is added or removed from the cart.
 
 Our select field has not been showing up and now is the time to fix that.
-Materalize fires off an initilization method on that select element after the page loads.
+Materalize fires off an initialization method on that select element after the page loads.
 Like with jQuery where you would want to wait for the page to load,
 similarly with React you may want to wait for a component to mount before you can apply logic.
 
@@ -134,10 +140,11 @@ The first thing to do is to apply an on change attribute to the select element w
 Toss a console.log() in your event handler and get it to spit out the selected value.
 Once you see the selected value getting logged you are ready to start applying the business logic.
 
-NOTE: Materialize does a fair amount of DOM manipulation which can create issues for React.
-We are using it in this portion of the assignment to quickly style our app while also building out the componenets ourselves.
+NOTE:
+Materialize does a fair amount of DOM manipulation which can create issues for React.
+We are using it in this portion of the assignment to quickly style our app while also building out the components ourselves.
 In the near future we'll be using a library that will replace Materialize.
-This library, and other similar styling libriaries, will be the perfred method for those who want to use styling frameworks.
+This library, and other similar styling libraries, will be the preferred method for those who want to use styling frameworks.
 
 HINT: Materialize works in a way that blocks the default behavior.
 There are ways to get around that, a couple of which are discussed here:
@@ -160,9 +167,10 @@ In their place in the `<Main />` component you will want to define your routes w
 When a user visits "/" your new Home component should render.
 When a user visits "/cart" a Cart, or checkout, component should render.
 This is different from your live cart preview component, but instead the page where users will fill in their info when submitting an order.
-Bulid out that component and use it as the Match for "/cart"
+Build out that component and use it as the Match for "/cart"
 
-You will need to pass props down to the Matched components. Utilize the Match component's `render` prop to render the corisponding components and required props.
+You will need to pass props down to the Matched components.
+Utilize the Match component's `render` prop to render the corresponding components and required props.
 
 For example:
 
@@ -177,7 +185,7 @@ For example:
 
 #### Bonus 1:
 
-Add a `<Miss />` component that renders a NotFound component for when a user visitings a path that does not exsist in your app.
+Add a `<Miss />` component that renders a NotFound component for when a user visitings a path that does not exist in your app.
 
 #### Bonus 2:
 
